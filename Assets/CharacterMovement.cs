@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
 {
-    //public Vector3 dir;
+    private Vector3 movement;
     public float speed;
     public float jumpForce;
     public Rigidbody rigidBody;
@@ -16,18 +16,24 @@ public class CharacterMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        
+        rigidBody.velocity = movement * Time.fixedDeltaTime;
     }
 
-    public void MoveCharacter(Vector2 dir)
-    {
-        Vector3 actualDir = new Vector3(dir.x, rigidBody.velocity.y, dir.y);
-        FacePosition(dir);
+    //public void MoveCharacter(Vector2 dir)
+    //{
+    //    Vector3 actualDir = new Vector3(dir.x * speed, rigidBody.velocity.y, dir.y * speed);
+    //    FacePosition(dir);
+    //    rigidBody.velocity = actualDir * Time.deltaTime;
+    //}
 
-        //transform.Translate(actualDir * speed * Time.deltaTime, Space.World);
-        rigidBody.velocity = actualDir * speed * Time.fixedDeltaTime;
+    public void SetMovement(Vector2 dir)
+    {
+        movement = new Vector3(dir.x * speed, rigidBody.velocity.y, dir.y * speed);
+        
+        if (dir.x != 0 && dir.y != 0)
+            FacePosition(dir);
     }
 
     public void FacePosition(Vector2 toFace)
@@ -42,6 +48,10 @@ public class CharacterMovement : MonoBehaviour
     //Jump is called by action controller script
     public void Jump()
     {
-        rigidBody.AddForce(new Vector3(rigidBody.velocity.x, jumpForce, rigidBody.velocity.z) * Time.fixedDeltaTime, ForceMode.Impulse);
+        rigidBody.velocity = new Vector3(rigidBody.velocity.x, 0f, rigidBody.velocity.z);
+        rigidBody.velocity += Vector3.up * jumpForce;
     }
+
+    
+    
 }

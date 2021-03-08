@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{05A8F21B-8864-13FB-EC03-D6DD87629A0B}</ProjectGuid>
+    <ProjectGuid>{EBA0FBA9-B2B7-094E-F4A1-55340FFB5D68}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Assets\CharacterMovement.cs" />
     <Compile Include="Assets\ActionController.cs" />
+    <Compile Include="Assets\ArrowMovement.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
